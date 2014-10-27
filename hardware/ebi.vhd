@@ -24,13 +24,12 @@ architecture Behavioral of ebi is
   signal hcDmemReadData : std_logic_vector(7 downto 0);
   signal hcDMemAddr : std_logic_vector(9 downto 0);
   
+  -- Dummy things for hostcomm
   signal hcIMemReadData : std_logic_vector(7 downto 0);
   signal hcIMemWriteData : std_logic_vector(7 downto 0);
   signal hcIMemWriteEnable : std_logic;
   signal hcIMemAddr : std_logic_vector(9 downto 0);
-  
-  signal temp_data_in : std_logic_vector(31 downto 0);
-  signal temp_data_out : std_logic_vector(31 downto 0);
+  -- End
   
   signal processor_enable : std_logic := '1';
   signal no : std_logic := '0';
@@ -78,14 +77,12 @@ HostCommInstr: entity work.HostComm port map (
   dmem_wr_en => hcDMemWriteEnable, dmem_addr => hcDMemAddr
 );
 
-temp_data_in <= x"0000" & data_in;
-
 DataMem: entity work.DualPortMem port map (
   clka => clk, clkb => clk,
   wea(0) => mem_write_enable,
-  dina => temp_data_in,
-  addra => address_in(7 downto 0),
-  douta => temp_data_out,
+  dina => data_in,
+  addra => address_in(9 downto 0),
+  douta => data_out,
   web(0) => hcDMemWriteEnable,
   addrb => hcDMemAddr,
   dinb => hcDMemWriteData,
