@@ -82,7 +82,7 @@ DataMem: entity work.DualPortMem port map (
   wea(0) => mem_write_enable,
   dina => data_in,
   addra => address_in(9 downto 0),
-  douta => data_out,
+  douta => data_in,
   web(0) => hcDMemWriteEnable,
   addrb => hcDMemAddr,
   dinb => hcDMemWriteData,
