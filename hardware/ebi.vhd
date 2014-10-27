@@ -35,6 +35,8 @@ architecture Behavioral of ebi is
   signal no : std_logic := '0';
   
   signal mem_write_enable : std_logic;
+  
+  signal temp_dmem_addr : std_logic_vector(10 downto 0);
 
 begin
 
@@ -77,6 +79,8 @@ HostCommInstr: entity work.HostComm port map (
   dmem_wr_en => hcDMemWriteEnable, dmem_addr => hcDMemAddr
 );
 
+temp_dmem_addr <= "0" & hcDMemAddr;
+
 DataMem: entity work.DualPortMem port map (
   clka => clk, clkb => clk,
   wea(0) => mem_write_enable,
@@ -84,7 +88,7 @@ DataMem: entity work.DualPortMem port map (
   addra => address_in(9 downto 0),
   douta => data_in,
   web(0) => hcDMemWriteEnable,
-  addrb => hcDMemAddr,
+  addrb => temp_dmem_addr,
   dinb => hcDMemWriteData,
   doutb => hcDMemReadData
 );
