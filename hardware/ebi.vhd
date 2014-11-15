@@ -12,7 +12,6 @@ entity ebi is
         reset : in  STD_LOGIC;
         led_1 : out STD_LOGIC;
         led_2 : out STD_LOGIC;
-        led_3 : out STD_LOGIC;
         UART_Rx : in STD_LOGIC;
         UART_Tx : out STD_LOGIC);
 end ebi;
@@ -51,46 +50,46 @@ begin
   end if;
 end process;
 
-process (write_enable_in) is
-begin
-  led_3 <= '0';
-  
-  if write_enable_in = '1' then
-    led_3 <= '1';
-  end if;
-end process;
+--process (write_enable_in) is
+--begin
+--  led_3 <= '0';
+--  
+--  if write_enable_in = '0' then
+--    led_3 <= '1';
+--  end if;
+--end process;
+--
+--process (write_enable_in, processor_enable) is
+--begin
+--  mem_write_enable <= '0';
+--  if write_enable_in = '0' and processor_enable = '1' then
+--    mem_write_enable <= '1';
+--  end if;
+--end process;
 
-process (write_enable_in, processor_enable) is
-begin
-  mem_write_enable <= '0';
-  if write_enable_in = '0' and processor_enable = '1' then
-    mem_write_enable <= '1';
-  end if;
-end process;
-
-HostCommInstr: entity work.HostComm port map (
-  clk => clk, reset => reset,
-  UART_Rx => UART_Rx, UART_Tx => UART_Tx,
-  proc_en => processor_enable, proc_rst => no,
-  imem_data_in => hcIMemReadData, imem_data_out => hcIMemWriteData,
-  imem_wr_en => hcIMemWriteEnable, imem_addr => hcIMemAddr,
-  
-  dmem_data_in => hcDMemReadData, dmem_data_out => hcDMemWriteData,
-  dmem_wr_en => hcDMemWriteEnable, dmem_addr => hcDMemAddr
-);
-
-temp_dmem_addr <= "0" & hcDMemAddr;
-
-DataMem: entity work.DualPortMem port map (
-  clka => clk, clkb => clk,
-  wea(0) => mem_write_enable,
-  dina => data_in,
-  addra => address_in(9 downto 0),
-  douta => data_in,
-  web(0) => hcDMemWriteEnable,
-  addrb => temp_dmem_addr,
-  dinb => hcDMemWriteData,
-  doutb => hcDMemReadData
-);
+--HostCommInstr: entity work.HostComm port map (
+--  clk => clk, reset => reset,
+--  UART_Rx => UART_Rx, UART_Tx => UART_Tx,
+--  proc_en => processor_enable, proc_rst => no,
+--  imem_data_in => hcIMemReadData, imem_data_out => hcIMemWriteData,
+--  imem_wr_en => hcIMemWriteEnable, imem_addr => hcIMemAddr,
+--  
+--  dmem_data_in => hcDMemReadData, dmem_data_out => hcDMemWriteData,
+--  dmem_wr_en => hcDMemWriteEnable, dmem_addr => hcDMemAddr
+--);
+--
+--temp_dmem_addr <= "0" & hcDMemAddr;
+--
+--DataMem: entity work.DualPortMem port map (
+--  clka => clk, clkb => clk,
+--  wea(0) => mem_write_enable,
+--  dina => data_in,
+--  addra => address_in(9 downto 0),
+--  douta => data_in,
+--  web(0) => hcDMemWriteEnable,
+--  addrb => temp_dmem_addr,
+--  dinb => hcDMemWriteData,
+--  doutb => hcDMemReadData
+--);
 
 end Behavioral;
