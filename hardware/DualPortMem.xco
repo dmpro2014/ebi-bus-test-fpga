@@ -1,16 +1,40 @@
 ##############################################################
+#
+# Xilinx Core Generator version 12.4
+# Date: Tue Nov 18 01:13:47 2014
+#
 ##############################################################
+#
+#  This file contains the customisation parameters for a
+#  Xilinx CORE Generator IP GUI. It is strongly recommended
+#  that you do not manually alter this file as it may cause
+#  unexpected and unsupported behavior.
+#
 ##############################################################
+#
+# BEGIN Project Options
+SET addpads = false
+SET asysymbol = true
+SET busformat = BusFormatAngleBracketNotRipped
+SET createndf = false
 SET designentry = VHDL
-SET BusFormat = BusFormatAngleBracketNotRipped
-SET devicefamily = spartan6
 SET device = xc6slx16
+SET devicefamily = spartan6
+SET flowvendor = Foundation_ISE
+SET formalverification = false
+SET foundationsym = false
+SET implementationfiletype = Ngc
 SET package = csg324
+SET removerpms = false
+SET simulationfiles = Behavioral
 SET speedgrade = -3
-SET FlowVendor = Foundation_ISE
-SET VerilogSim = True
-SET VHDLSim = True
+SET verilogsim = true
+SET vhdlsim = true
+# END Project Options
+# BEGIN Select
 SELECT Block_Memory_Generator family Xilinx,_Inc. 4.3
+# END Select
+# BEGIN Parameters
 CSET additional_inputs_for_power_estimation=false
 CSET algorithm=Minimum_Area
 CSET assume_synchronous_clk=false
@@ -61,6 +85,9 @@ CSET use_regcea_pin=false
 CSET use_regceb_pin=false
 CSET use_rsta_pin=false
 CSET use_rstb_pin=false
-CSET write_depth_a=1024
+CSET write_depth_a=4096
 CSET write_width_a=16
 CSET write_width_b=8
+# END Parameters
+GENERATE
+# CRC: 4629d390

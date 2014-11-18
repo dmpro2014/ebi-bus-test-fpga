@@ -63,12 +63,12 @@ ENTITY DualPortMem IS
 	port (
 	clka: in std_logic;
 	wea: in std_logic_vector(0 downto 0);
-	addra: in std_logic_vector(9 downto 0);
+	addra: in std_logic_vector(11 downto 0);
 	dina: in std_logic_vector(15 downto 0);
 	douta: out std_logic_vector(15 downto 0);
 	clkb: in std_logic;
 	web: in std_logic_vector(0 downto 0);
-	addrb: in std_logic_vector(10 downto 0);
+	addrb: in std_logic_vector(12 downto 0);
 	dinb: in std_logic_vector(7 downto 0);
 	doutb: out std_logic_vector(7 downto 0));
 END DualPortMem;
@@ -79,12 +79,12 @@ component wrapped_DualPortMem
 	port (
 	clka: in std_logic;
 	wea: in std_logic_vector(0 downto 0);
-	addra: in std_logic_vector(9 downto 0);
+	addra: in std_logic_vector(11 downto 0);
 	dina: in std_logic_vector(15 downto 0);
 	douta: out std_logic_vector(15 downto 0);
 	clkb: in std_logic;
 	web: in std_logic_vector(0 downto 0);
-	addrb: in std_logic_vector(10 downto 0);
+	addrb: in std_logic_vector(12 downto 0);
 	dinb: in std_logic_vector(7 downto 0);
 	doutb: out std_logic_vector(7 downto 0));
 end component;
@@ -115,24 +115,24 @@ end component;
 			c_has_mem_output_regs_a => 0,
 			c_load_init_file => 0,
 			c_xdevicefamily => "spartan6",
-			c_write_depth_b => 2048,
-			c_write_depth_a => 1024,
+			c_write_depth_b => 8192,
+			c_write_depth_a => 4096,
 			c_has_rstb => 0,
 			c_has_rsta => 0,
 			c_has_mux_output_regs_b => 0,
 			c_inita_val => "0",
 			c_has_mux_output_regs_a => 0,
-			c_addra_width => 10,
+			c_addra_width => 12,
 			c_has_softecc_input_regs_a => 0,
-			c_addrb_width => 11,
+			c_addrb_width => 13,
 			c_default_data => "0",
 			c_use_ecc => 0,
 			c_algorithm => 1,
 			c_disable_warn_bhv_range => 0,
 			c_write_width_b => 8,
 			c_write_width_a => 16,
-			c_read_depth_b => 2048,
-			c_read_depth_a => 1024,
+			c_read_depth_b => 8192,
+			c_read_depth_a => 4096,
 			c_byte_size => 9,
 			c_sim_collision_check => "ALL",
 			c_common_clk => 0,
